@@ -1,0 +1,7 @@
+Pickup_stopid,check_stop_id,drop_stop_id,end_stop_id,end_zone,action
+p1,c,d,e,3,task_created
+p1,c,d,e,3,task_created
+p1,c,d,e,3,task_created
+p1,c,d,e,1,task_created
+p1,c,d,e,3,task_created
+p1,c,d,e,3,task_created

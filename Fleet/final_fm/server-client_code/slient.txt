@@ -1,0 +1,616 @@
+# slient_sqlite.py
+# Fixes applied:
+#   FIX 1 – Path file saved to SCRIPT_DIR (not CWD)
+#   FIX 2 – Ack cleared from DB only AFTER send
+#   FIX 3 – task_started reported immediately on run_task
+#   FIX 4 – task_completed ack NOT cleared immediately; let ack worker send it first
+#   FIX 5 – Separate status poll from run_task detection to avoid GET /command conflict
+#   FIX 6 – task_completed detection polls execution.csv independently every 0.5s
+
+import time
+import sqlite3
+import requests
+import logging
+import sys
+import argparse
+import os
+import hashlib
+import threading
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s | %(levelname)s | %(message)s')
+logger = logging.getLogger(__name__)
+
+# ===== CONFIGURATION =====
+CLIENT_ID = 1
+ROBOT_ID = f"rob{CLIENT_ID}"
+DB_FILE = "motor.db"
+MARKER_DB_FILE = "myMarker.db"
+BASE_URL = "http://192.168.0.24:8000"
+HOST_URL = f"{BASE_URL}/update/"
+POLLING_INTERVAL = 0.3
+PATH_SYNC_INTERVAL = 5
+COMMAND_POLL_INTERVAL = 1.0
+DEVICE_LOG_SYNC_INTERVAL = 1.0
+TASK_STATUS_POLL_INTERVAL = 0.5   # how often we check execution.csv for status change
+
+# FIX 1: Use script directory so path_rob1.csv lands beside this script
+#         and pyModbusMotor can find it.
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+EXECUTION_FILE = os.path.join(SCRIPT_DIR, "execution.csv")
+
+# =========================================
+last_timestamp       = None
+last_reported_status = None        # last status we have POSTed to /command/{id}
+last_device_log_sync = 0
+
+last_sent_acknowledgement = None   # FIX 2: track to avoid re-sending same ack
+
+# ===== SCALING =====
+DRIVE_SCALE = 1 / 159.1
+TURN_SCALE  = 1 / 986.7
+
+db_lock = threading.Lock()
+
+
+# =============================================================================
+# Scaling Helper
+# =============================================================================
+
+def scale_to_int(value, scale, negate=False):
+    try:
+        if value is None:
+            return 0
+        scaled = int(float(value) * scale)
+        return -scaled if negate else scaled
+    except Exception as e:
+        logger.warning(f"⚠️ Scaling error for value {value}: {e}")
+        return 0
+
+
+# =============================================================================
+# DB Helpers
+# =============================================================================
+
+def read_variable(db_file, variable_name):
+    with db_lock:
+        try:
+            conn   = sqlite3.connect(db_file, timeout=5.0)
+            cursor = conn.cursor()
+            cursor.execute(f"SELECT {variable_name} FROM enmac WHERE id = 1")
+            result = cursor.fetchone()
+            conn.close()
+            return result[0] if result is not None else None
+        except Exception as e:
+            logger.error(f"Error reading {variable_name}: {e}")
+            return None
+
+
+def write_variable(db_file, variable_name, data):
+    with db_lock:
+        try:
+            conn   = sqlite3.connect(db_file, timeout=5.0)
+            cursor = conn.cursor()
+            cursor.execute(f"UPDATE enmac SET {variable_name} = ? WHERE id = 1", (data,))
+            conn.commit()
+            conn.close()
+            return True
+        except Exception as e:
+            logger.error(f"Error writing {variable_name}: {e}")
+            return False
+
+
+# =============================================================================
+# Execution CSV Helpers
+# =============================================================================
+
+def read_execution_command() -> str:
+    """Read command from second line of execution.csv."""
+    if not os.path.exists(EXECUTION_FILE):
+        return ""
+    try:
+        with open(EXECUTION_FILE, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+            if len(lines) < 2:
+                return ""
+            return lines[1].strip()
+    except Exception as e:
+        logger.error(f"❌ Failed to read execution.csv: {e}")
+        return ""
+
+
+def write_execution_command(command: str):
+    """Write execution.csv: header on line 1, command on line 2."""
+    try:
+        with open(EXECUTION_FILE, 'w', encoding='utf-8') as f:
+            f.write("command\n")
+            f.write(command + '\n')
+        logger.debug(f"📝 Updated execution.csv: {command}")
+    except Exception as e:
+        logger.error(f"❌ Failed to write execution.csv: {e}")
+
+
+# =============================================================================
+# Database Setup & Validation
+# =============================================================================
+
+def check_database():
+    try:
+        conn   = sqlite3.connect(DB_FILE)
+        cursor = conn.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='enmac'")
+        if not cursor.fetchone():
+            logger.error(f"❌ Table 'enmac' not found in {DB_FILE}")
+            return False
+        cursor.execute("PRAGMA table_info(enmac)")
+        cols = [row[1] for row in cursor.fetchall()]
+        columns_to_add = {
+            "timestamp":          "TEXT",
+            "acknowledgement":    "TEXT",
+            "fleet_response":     "TEXT",
+            "obstacle":           "INTEGER",
+            "battery_percentage": "REAL",
+            "charging_status":    "INTEGER",
+            "switch_status":      "INTEGER",
+        }
+        for col_name, col_type in columns_to_add.items():
+            if col_name not in cols:
+                logger.info(f"Adding '{col_name}' column to {DB_FILE}...")
+                cursor.execute(f"ALTER TABLE enmac ADD COLUMN {col_name} {col_type}")
+        conn.commit()
+        conn.close()
+        logger.info("✅ Main DB OK")
+        return True
+    except Exception as e:
+        logger.error(f"❌ Main DB error: {e}")
+        return False
+
+
+def check_marker_db():
+    try:
+        conn   = sqlite3.connect(MARKER_DB_FILE)
+        cursor = conn.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='enmac'")
+        if not cursor.fetchone():
+            logger.error(f"❌ Table 'enmac' not found in {MARKER_DB_FILE}")
+            return False
+        cursor.execute("PRAGMA table_info(enmac)")
+        cols = [row[1] for row in cursor.fetchall()]
+        if "r_id" not in cols:
+            logger.error(f"❌ 'r_id' column missing in {MARKER_DB_FILE}")
+            return False
+        conn.close()
+        logger.info("✅ Marker DB OK")
+        return True
+    except Exception as e:
+        logger.error(f"❌ Marker DB error: {e}")
+        return False
+
+
+def setup_auto_timestamp():
+    try:
+        conn = sqlite3.connect(DB_FILE)
+        c    = conn.cursor()
+        c.execute("DROP TRIGGER IF EXISTS update_enmac_timestamp")
+        c.execute("DROP TRIGGER IF EXISTS insert_enmac_timestamp")
+        c.execute("""
+            CREATE TRIGGER update_enmac_timestamp
+                AFTER UPDATE ON enmac
+                FOR EACH ROW
+            BEGIN
+                UPDATE enmac SET timestamp = datetime('now', 'localtime')
+                WHERE id = OLD.id;
+            END;
+        """)
+        c.execute("""
+            CREATE TRIGGER insert_enmac_timestamp
+                BEFORE INSERT ON enmac
+                FOR EACH ROW
+                WHEN NEW.timestamp IS NULL
+            BEGIN
+                UPDATE enmac SET timestamp = datetime('now', 'localtime')
+                WHERE id = NEW.id;
+            END;
+        """)
+        conn.commit()
+        conn.close()
+        logger.info("✅ Triggers set up")
+        return True
+    except Exception as e:
+        logger.error(f"❌ Trigger setup failed: {e}")
+        return False
+
+
+def get_current_location():
+    try:
+        conn   = sqlite3.connect(MARKER_DB_FILE)
+        c      = conn.cursor()
+        c.execute("SELECT r_id FROM enmac ORDER BY id DESC LIMIT 1")
+        row    = c.fetchone()
+        conn.close()
+        return row[0] if row else None
+    except Exception as e:
+        logger.error(f"❌ Failed to read r_id: {e}")
+        return None
+
+
+def get_local_file_hash(filepath):
+    if not os.path.exists(filepath):
+        return None
+    with open(filepath, "rb") as f:
+        return hashlib.md5(f.read()).hexdigest()
+
+
+# =============================================================================
+# Path File Sync
+# =============================================================================
+
+def sync_path_file():
+    filename   = f"path_rob{CLIENT_ID}.csv"
+    local_path = os.path.join(SCRIPT_DIR, filename)          # FIX 1
+    try:
+        local_hash = get_local_file_hash(local_path)
+        response   = requests.get(f"{BASE_URL}/path/{CLIENT_ID}", timeout=5)
+        if response.status_code == 404:
+            logger.warning(f"⚠️ Path file {filename} not found on server")
+            return
+        elif response.status_code != 200:
+            logger.error(f"❌ Path fetch failed: {response.status_code}")
+            return
+        server_hash = response.headers.get("X-File-Hash") or hashlib.md5(response.content).hexdigest()
+        if local_hash != server_hash:
+            with open(local_path, "wb") as f:
+                f.write(response.content)
+            logger.info(f"✅ Synced path file → {local_path}")
+        else:
+            logger.debug(f"📁 Path file {filename} is up to date")
+    except Exception as e:
+        logger.error(f"📡 Path sync failed: {e}")
+
+
+# =============================================================================
+# Device Log Sync
+# =============================================================================
+
+def _read_db_row(cols: list):
+    try:
+        with db_lock:
+            conn   = sqlite3.connect(DB_FILE, timeout=5.0)
+            cursor = conn.cursor()
+            cursor.execute(f"SELECT {', '.join(cols)} FROM enmac WHERE id = 1")
+            row    = cursor.fetchone()
+            conn.close()
+            return row
+    except Exception as e:
+        logger.error(f"❌ DB read error ({cols}): {e}")
+        return None
+
+
+def sync_device_logs_to_server():
+    row = _read_db_row(["obstacle", "battery_percentage", "alarmRM", "alarmLM",
+                         "charging_status", "switch_status", "timestamp"])
+    if not row:
+        return
+    obstacle, battery, alarmRM, alarmLM, charging, switch_s, ts = row
+    ts = ts or ""
+    endpoints = [
+        (f"{BASE_URL}/api/robot/sync/obstacle",
+         {"robot_id": ROBOT_ID, "obstacle": obstacle, "timestamp": ts}),
+        (f"{BASE_URL}/api/robot/sync/battery",
+         {"robot_id": ROBOT_ID, "battery_percentage": battery, "timestamp": ts}),
+        (f"{BASE_URL}/api/robot/sync/alarm",
+         {"robot_id": ROBOT_ID, "alarmRM": alarmRM, "alarmLM": alarmLM, "timestamp": ts}),
+        (f"{BASE_URL}/api/robot/sync/charging_status",
+         {"robot_id": ROBOT_ID, "charging_status": charging, "timestamp": ts}),
+        (f"{BASE_URL}/api/robot/sync/switch_status",
+         {"robot_id": ROBOT_ID, "switch_status": switch_s, "timestamp": ts}),
+    ]
+    for url, payload in endpoints:
+        try:
+            resp = requests.post(url, json=payload, timeout=2)
+            if resp.status_code != 200:
+                logger.debug(f"Device log sync non-200: {url} → {resp.status_code}")
+        except Exception as e:
+            logger.debug(f"Device log sync error {url}: {e}")
+
+
+# =============================================================================
+# Acknowledgement worker  (robot → server → rob1_communication.csv)
+# FIX 2 + FIX 4:
+#   - Clear DB ack only AFTER successful send
+#   - Do NOT clear the ack immediately when task_completed is detected;
+#     let this worker send it first, THEN clear
+# =============================================================================
+
+def sync_acknowledgement_to_server():
+    global last_sent_acknowledgement
+    try:
+        with db_lock:
+            conn   = sqlite3.connect(DB_FILE, timeout=5.0)
+            cursor = conn.cursor()
+            cursor.execute("SELECT acknowledgement FROM enmac WHERE id = 1")
+            row    = cursor.fetchone()
+            conn.close()
+
+        if not row:
+            return
+        current_ack = (row[0] or "").strip()
+        if not current_ack or current_ack == last_sent_acknowledgement:
+            return
+
+        url      = f"{BASE_URL}/api/robot/{ROBOT_ID}/communication"
+        response = requests.post(url, json={"acknowledgement": current_ack}, timeout=5)
+
+        if response.status_code == 200:
+            last_sent_acknowledgement = current_ack
+            logger.info(f"📤 Ack sent → {ROBOT_ID}_communication.csv: {current_ack}")
+            # FIX 2: Clear from DB only AFTER successful send
+            with db_lock:
+                try:
+                    conn = sqlite3.connect(DB_FILE, timeout=5.0)
+                    conn.execute("UPDATE enmac SET acknowledgement = '' WHERE id = 1")
+                    conn.commit()
+                    conn.close()
+                except Exception as e:
+                    logger.warning(f"Could not clear ack from DB: {e}")
+
+    except Exception as e:
+        logger.error(f"Ack sync error: {e}")
+
+
+def acknowledgement_worker():
+    logger.info("📨 Ack worker started")
+    while True:
+        sync_acknowledgement_to_server()
+        time.sleep(0.5)
+
+
+# =============================================================================
+# Communication worker  (server → motor.db, long-poll)
+# =============================================================================
+
+def sync_communication_to_motor_db():
+    try:
+        url      = f"{BASE_URL}/api/robot/{ROBOT_ID}/communication?long_poll=true"
+        response = requests.get(url, timeout=65)
+        if response.status_code != 200:
+            return
+        data           = response.json()
+        fleet_response = (data.get("fleet_response") or "").strip()
+        if fleet_response:
+            with db_lock:
+                conn = sqlite3.connect(DB_FILE, timeout=5.0)
+                conn.execute("UPDATE enmac SET fleet_response = ? WHERE id = 1", (fleet_response,))
+                conn.commit()
+                conn.close()
+            logger.info(f"📩 Fleet response written to motor.db: {fleet_response!r}")
+    except requests.exceptions.Timeout:
+        logger.debug("Communication long-poll timeout (normal)")
+    except requests.exceptions.RequestException as e:
+        logger.debug(f"Communication sync request error: {e}")
+    except Exception as e:
+        logger.error(f"Communication sync error: {e}")
+
+
+def communication_worker():
+    logger.info("📡 Communication worker started")
+    while True:
+        sync_communication_to_motor_db()
+
+
+# =============================================================================
+# Task Status Watcher  (FIX 5 + FIX 6)
+#
+# Runs in its OWN thread, polls execution.csv every 0.5s.
+# Sends status to POST /command/{id} and ack to motor.db immediately.
+# Completely separate from the run_task detection so neither blocks the other.
+# =============================================================================
+
+_task_watcher_lock = threading.Lock()
+
+def _post_status(status: str) -> bool:
+    """POST status to /command/{client_id}. Returns True on success."""
+    try:
+        resp = requests.post(
+            f"{BASE_URL}/command/{CLIENT_ID}",
+            json={"command": status},
+            timeout=5
+        )
+        return resp.status_code == 200
+    except Exception as e:
+        logger.error(f"POST status error: {e}")
+        return False
+
+
+def task_status_watcher():
+    """
+    Background thread: watches execution.csv and reports every status
+    change to the fleet server and rob1_communication.csv.
+
+    Key behaviours:
+      - Reports task_started, executing_task, task_completed reliably.
+      - task_completed ack is written to motor.db FIRST; the ack worker
+        sends it to communication.csv; only then we clear fleet_response.
+      - Does NOT clear the ack prematurely (FIX 4).
+    """
+    global last_reported_status
+    logger.info("👁️ Task status watcher started")
+
+    while True:
+        try:
+            current = read_execution_command()
+
+            if current and current != last_reported_status:
+                logger.info(f"📋 Status change detected: '{last_reported_status}' → '{current}'")
+
+                # 1. POST to server task CSV
+                ok = _post_status(current)
+                if ok:
+                    logger.info(f"✅ Reported '{current}' to rob{CLIENT_ID}_task.csv")
+                else:
+                    logger.warning(f"⚠️ Failed to report '{current}' to server")
+
+                # 2. Write ack to motor.db  → ack worker pushes to communication.csv
+                write_variable(DB_FILE, "acknowledgement", f"STATUS:{current}")
+
+                # 3. Update local state
+                last_reported_status = current
+
+                # 4. If task completed:
+                #    - wait a moment so ack worker can actually send the ack
+                #    - THEN clear fleet_response from DB (do NOT clear ack here)
+                if current == "task_completed":
+                    logger.info("🏁 Task completed — waiting for ack worker to send ack...")
+                    time.sleep(2.0)          # give ack worker 2 cycles to transmit
+
+                    # Clear fleet_response only (not acknowledgement — ack worker already cleared it)
+                    write_variable(DB_FILE, "fleet_response", "")
+                    logger.info("🧹 fleet_response cleared after task_completed")
+
+        except Exception as e:
+            logger.error(f"Task watcher error: {e}")
+
+        time.sleep(TASK_STATUS_POLL_INTERVAL)
+
+
+# =============================================================================
+# Main Polling Loop
+# =============================================================================
+
+def poll_and_sync():
+    global last_timestamp, last_device_log_sync
+    last_path_sync    = 0
+    last_command_poll = 0
+
+    logger.info(f"🔁 Starting sync to {BASE_URL}")
+    logger.info(f"🆔 Client ID: {CLIENT_ID}, Robot ID: {ROBOT_ID}")
+    logger.info(f"📂 Path files saved to: {SCRIPT_DIR}")
+
+    while True:
+        current_time = time.time()
+
+        # ========== PATH SYNC ==========
+        if current_time - last_path_sync > PATH_SYNC_INTERVAL:
+            sync_path_file()
+            last_path_sync = current_time
+
+        # ========== DEVICE LOG SYNC ==========
+        if current_time - last_device_log_sync >= DEVICE_LOG_SYNC_INTERVAL:
+            sync_device_logs_to_server()
+            last_device_log_sync = current_time
+
+        # ========== RUN_TASK DETECTION ==========
+        # FIX 5: This block ONLY handles incoming run_task from server.
+        # Status reporting is now handled entirely by task_status_watcher thread.
+        if current_time - last_command_poll > COMMAND_POLL_INTERVAL:
+            try:
+                resp = requests.get(f"{BASE_URL}/command/{CLIENT_ID}", timeout=3)
+                if resp.status_code == 200:
+                    desired_cmd   = resp.json().get("command", "idle")
+                    current_local = read_execution_command()
+
+                    # Only trigger run_task if robot is idle or has finished last task
+                    if desired_cmd == "run_task" and current_local in ("", "idle", "task_completed","task_cancelled"):
+                        logger.info("🤖 Server sent 'run_task' → writing execution.csv")
+                        write_execution_command("run_task")
+
+                        # FIX 3: Report task_started immediately so fleet advances state
+                        ok = _post_status("task_started")
+                        if ok:
+                            logger.info("📢 Reported 'task_started' to server")
+                        write_variable(DB_FILE, "acknowledgement", "STATUS:task_started")
+                        # Update watcher state so it doesn't re-report task_started
+                        global last_reported_status
+                        last_reported_status = "task_started"
+
+            except Exception as e:
+                logger.error(f"📡 run_task detection error: {e}")
+
+            last_command_poll = current_time
+
+        # ========== MOTOR DATA SYNC ==========
+        try:
+            with db_lock:
+                conn = sqlite3.connect(DB_FILE, timeout=5.0)
+                conn.row_factory = sqlite3.Row
+                c    = conn.cursor()
+                c.execute("SELECT *, timestamp FROM enmac ORDER BY timestamp DESC LIMIT 1")
+                row  = c.fetchone()
+                conn.close()
+
+            if not row:
+                time.sleep(POLLING_INTERVAL)
+                continue
+
+            ts = row["timestamp"]
+            if last_timestamp is None or ts != last_timestamp:
+                current_loc = get_current_location()
+
+                right_drive = scale_to_int(row["RIGHT_MOTOR_ENCODER_VAL"], DRIVE_SCALE, negate=True)
+                left_drive  = scale_to_int(row["LEFT_MOTOR_ENCODER_VAL"],  DRIVE_SCALE, negate=False)
+                right_motor = scale_to_int(row["RIGHT_TURN_ENCODER_VAL"],  TURN_SCALE,  negate=True)
+                left_motor  = scale_to_int(row["LEFT_TURN_ENCODER_VAL"],   TURN_SCALE,  negate=True)
+
+                payload = {
+                    "client_id":              CLIENT_ID,
+                    "RIGHT_MOTOR_ENCODER_VAL": right_drive,
+                    "LEFT_MOTOR_ENCODER_VAL":  left_drive,
+                    "RIGHT_TURN_ENCODER_VAL":  right_motor,
+                    "LEFT_TURN_ENCODER_VAL":   left_motor,
+                    "current_location":        current_loc
+                }
+
+                try:
+                    r = requests.post(HOST_URL, json=payload, timeout=3)
+                    if r.status_code == 200:
+                        logger.info("✅ Synced motor data to server")
+                        last_timestamp = ts
+                    else:
+                        logger.error(f"❌ Server error: {r.status_code} - {r.text}")
+                except requests.exceptions.RequestException as e:
+                    logger.error(f"📡 Network error: {e}")
+
+        except Exception as e:
+            logger.error(f"💥 Unexpected error: {e}")
+
+        time.sleep(POLLING_INTERVAL)
+
+
+# =============================================================================
+# Entry Point
+# =============================================================================
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--setup', action='store_true')
+    parser.add_argument('--check', action='store_true')
+    parser.add_argument('--run',   action='store_true')
+    args = parser.parse_args()
+    if not any([args.setup, args.check, args.run]):
+        args.run = True
+
+    logger.info("🚀 Enmac Sync Client — Path + Task + Communication")
+    if not check_database() or not check_marker_db():
+        sys.exit(1)
+
+    if args.setup:
+        setup_auto_timestamp()
+    elif args.check:
+        logger.info("✅ All checks passed!")
+    elif args.run:
+        if not setup_auto_timestamp():
+            sys.exit(1)
+
+        # Start all background workers
+        threading.Thread(target=communication_worker,    daemon=True, name="CommWorker").start()
+        threading.Thread(target=acknowledgement_worker,  daemon=True, name="AckWorker").start()
+        threading.Thread(target=task_status_watcher,     daemon=True, name="TaskWatcher").start()
+
+        try:
+            poll_and_sync()
+        except KeyboardInterrupt:
+            logger.info("⏹️ Stopped by user")
+
+
+if __name__ == "__main__":
+    main()

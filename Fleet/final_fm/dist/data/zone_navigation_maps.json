@@ -1,0 +1,1656 @@
+{
+  "20": {
+    "zones": {
+      "1": {
+        "connections": [
+          {
+            "to": "2",
+            "direction": "north",
+            "distance_m": 1.0,
+            "connection_id": 45
+          }
+        ]
+      },
+      "2": {
+        "connections": [
+          {
+            "to": "3",
+            "direction": "east",
+            "distance_m": 3.0,
+            "connection_id": 46
+          }
+        ]
+      },
+      "3": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "south",
+            "distance_m": 1.0,
+            "connection_id": 47
+          }
+        ]
+      },
+      "4": {
+        "connections": [
+          {
+            "to": "5",
+            "direction": "west",
+            "distance_m": 2.0,
+            "connection_id": 48
+          }
+        ]
+      },
+      "5": {
+        "connections": [
+          {
+            "to": "6",
+            "direction": "south",
+            "distance_m": 1.0,
+            "connection_id": 49
+          },
+          {
+            "to": "1",
+            "direction": "west",
+            "distance_m": 1.0,
+            "connection_id": 50
+          }
+        ]
+      }
+    },
+    "stops": {
+      "p1": {
+        "name": "p1",
+        "zone_connection_id": 46,
+        "from_zone": "2",
+        "to_zone": "3",
+        "distance_from_start_m": 1.0,
+        "side": "right"
+      },
+      "p2": {
+        "name": "p2",
+        "zone_connection_id": 46,
+        "from_zone": "2",
+        "to_zone": "3",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "p3": {
+        "name": "p3",
+        "zone_connection_id": 46,
+        "from_zone": "2",
+        "to_zone": "3",
+        "distance_from_start_m": 3.0,
+        "side": "right"
+      },
+      "c": {
+        "name": "c",
+        "zone_connection_id": 47,
+        "from_zone": "3",
+        "to_zone": "4",
+        "distance_from_start_m": 1.0,
+        "side": "right"
+      },
+      "d": {
+        "name": "d",
+        "zone_connection_id": 48,
+        "from_zone": "4",
+        "to_zone": "5",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "e": {
+        "name": "e",
+        "zone_connection_id": 50,
+        "from_zone": "5",
+        "to_zone": "1",
+        "distance_from_start_m": 1.0,
+        "side": "right"
+      },
+      "ch": {
+        "name": "ch",
+        "zone_connection_id": 49,
+        "from_zone": "5",
+        "to_zone": "6",
+        "distance_from_start_m": 1.0,
+        "side": "right"
+      }
+    }
+  },
+  "21": {
+    "zones": {
+      "1": {
+        "connections": [
+          {
+            "to": "2",
+            "direction": "north",
+            "distance_m": 0.1,
+            "connection_id": 51
+          }
+        ]
+      },
+      "2": {
+        "connections": [
+          {
+            "to": "3",
+            "direction": "north",
+            "distance_m": 0.1,
+            "connection_id": 52
+          }
+        ]
+      },
+      "3": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "north",
+            "distance_m": 0.1,
+            "connection_id": 53
+          }
+        ]
+      },
+      "4": {
+        "connections": [
+          {
+            "to": "5",
+            "direction": "north",
+            "distance_m": 0.1,
+            "connection_id": 54
+          },
+          {
+            "to": "2",
+            "direction": "south",
+            "distance_m": 0.2,
+            "connection_id": 55
+          },
+          {
+            "to": "1",
+            "direction": "south",
+            "distance_m": 0.3,
+            "connection_id": 57
+          }
+        ]
+      },
+      "5": {
+        "connections": [
+          {
+            "to": "6",
+            "direction": "north",
+            "distance_m": 0.1,
+            "connection_id": 56
+          },
+          {
+            "to": "2",
+            "direction": "south",
+            "distance_m": 0.3,
+            "connection_id": 65
+          }
+        ]
+      }
+    },
+    "stops": {
+      "p1": {
+        "name": "p1",
+        "zone_connection_id": 52,
+        "from_zone": "2",
+        "to_zone": "3",
+        "distance_from_start_m": 0.0,
+        "side": "right"
+      },
+      "c": {
+        "name": "c",
+        "zone_connection_id": 53,
+        "from_zone": "3",
+        "to_zone": "4",
+        "distance_from_start_m": 0.0,
+        "side": "right"
+      },
+      "d": {
+        "name": "d",
+        "zone_connection_id": 54,
+        "from_zone": "4",
+        "to_zone": "5",
+        "distance_from_start_m": 0.0,
+        "side": "right"
+      },
+      "e": {
+        "name": "e",
+        "zone_connection_id": 56,
+        "from_zone": "5",
+        "to_zone": "6",
+        "distance_from_start_m": 0.1,
+        "side": "right"
+      }
+    }
+  },
+  "22": {
+    "zones": {
+      "1": {
+        "connections": [
+          {
+            "to": "2",
+            "direction": "north",
+            "distance_m": 50.0,
+            "connection_id": 58
+          }
+        ]
+      },
+      "2": {
+        "connections": [
+          {
+            "to": "3",
+            "direction": "east",
+            "distance_m": 50.0,
+            "connection_id": 59
+          }
+        ]
+      },
+      "3": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "south",
+            "distance_m": 50.0,
+            "connection_id": 60
+          }
+        ]
+      },
+      "4": {
+        "connections": [
+          {
+            "to": "5",
+            "direction": "east",
+            "distance_m": 50.0,
+            "connection_id": 61
+          }
+        ]
+      },
+      "5": {
+        "connections": [
+          {
+            "to": "6",
+            "direction": "south",
+            "distance_m": 50.0,
+            "connection_id": 62
+          }
+        ]
+      },
+      "6": {
+        "connections": [
+          {
+            "to": "7",
+            "direction": "west",
+            "distance_m": 100.0,
+            "connection_id": 63
+          }
+        ]
+      },
+      "7": {
+        "connections": [
+          {
+            "to": "1",
+            "direction": "north",
+            "distance_m": 50.0,
+            "connection_id": 64
+          }
+        ]
+      }
+    },
+    "stops": {
+      "p1": {
+        "name": "p1",
+        "zone_connection_id": 59,
+        "from_zone": "2",
+        "to_zone": "3",
+        "distance_from_start_m": 0.0,
+        "side": "right"
+      },
+      "p2": {
+        "name": "p2",
+        "zone_connection_id": 59,
+        "from_zone": "2",
+        "to_zone": "3",
+        "distance_from_start_m": 25.0,
+        "side": "right"
+      },
+      "p3": {
+        "name": "p3",
+        "zone_connection_id": 59,
+        "from_zone": "2",
+        "to_zone": "3",
+        "distance_from_start_m": 50.0,
+        "side": "right"
+      },
+      "c": {
+        "name": "c",
+        "zone_connection_id": 60,
+        "from_zone": "3",
+        "to_zone": "4",
+        "distance_from_start_m": 50.0,
+        "side": "right"
+      },
+      "e": {
+        "name": "e",
+        "zone_connection_id": 62,
+        "from_zone": "5",
+        "to_zone": "6",
+        "distance_from_start_m": 50.0,
+        "side": "right"
+      },
+      "d": {
+        "name": "d",
+        "zone_connection_id": 61,
+        "from_zone": "4",
+        "to_zone": "5",
+        "distance_from_start_m": 50.0,
+        "side": "right"
+      }
+    }
+  },
+  "23": {
+    "zones": {
+      "1": {
+        "connections": [
+          {
+            "to": "2",
+            "direction": "north",
+            "distance_m": 0.1,
+            "connection_id": 66
+          },
+          {
+            "to": "6",
+            "direction": "east",
+            "distance_m": 0.1,
+            "connection_id": 71
+          }
+        ]
+      },
+      "2": {
+        "connections": [
+          {
+            "to": "3",
+            "direction": "north",
+            "distance_m": 0.3,
+            "connection_id": 67
+          }
+        ]
+      },
+      "3": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "north",
+            "distance_m": 0.3,
+            "connection_id": 68
+          }
+        ]
+      },
+      "4": {
+        "connections": [
+          {
+            "to": "5",
+            "direction": "north",
+            "distance_m": 0.1,
+            "connection_id": 69
+          }
+        ]
+      },
+      "5": {
+        "connections": [
+          {
+            "to": "1",
+            "direction": "south",
+            "distance_m": 0.6,
+            "connection_id": 70
+          }
+        ]
+      }
+    },
+    "stops": {
+      "p1": {
+        "name": "p1",
+        "zone_connection_id": 67,
+        "from_zone": "2",
+        "to_zone": "3",
+        "distance_from_start_m": 0.1,
+        "side": "right"
+      },
+      "p2": {
+        "name": "p2",
+        "zone_connection_id": 67,
+        "from_zone": "2",
+        "to_zone": "3",
+        "distance_from_start_m": 0.2,
+        "side": "right"
+      },
+      "p3": {
+        "name": "p3",
+        "zone_connection_id": 67,
+        "from_zone": "2",
+        "to_zone": "3",
+        "distance_from_start_m": 0.3,
+        "side": "right"
+      },
+      "c": {
+        "name": "c",
+        "zone_connection_id": 68,
+        "from_zone": "3",
+        "to_zone": "4",
+        "distance_from_start_m": 0.1,
+        "side": "right"
+      },
+      "d": {
+        "name": "d",
+        "zone_connection_id": 69,
+        "from_zone": "4",
+        "to_zone": "5",
+        "distance_from_start_m": 0.1,
+        "side": "right"
+      },
+      "e": {
+        "name": "e",
+        "zone_connection_id": 70,
+        "from_zone": "5",
+        "to_zone": "1",
+        "distance_from_start_m": 0.6,
+        "side": "right"
+      }
+    }
+  },
+  "24": {
+    "zones": {
+      "1": {
+        "connections": [
+          {
+            "to": "2",
+            "direction": "north",
+            "distance_m": 2.0,
+            "connection_id": 72
+          }
+        ]
+      },
+      "2": {
+        "connections": [
+          {
+            "to": "3",
+            "direction": "west",
+            "distance_m": 0.5,
+            "connection_id": 73
+          },
+          {
+            "to": "1",
+            "direction": "south",
+            "distance_m": 2.0,
+            "connection_id": 76
+          }
+        ]
+      },
+      "3": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "east",
+            "distance_m": 1.0,
+            "connection_id": 74
+          }
+        ]
+      },
+      "4": {
+        "connections": [
+          {
+            "to": "2",
+            "direction": "west",
+            "distance_m": 0.5,
+            "connection_id": 75
+          }
+        ]
+      }
+    },
+    "stops": {
+      "p1": {
+        "name": "p1",
+        "zone_connection_id": 72,
+        "from_zone": "1",
+        "to_zone": "2",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "c": {
+        "name": "c",
+        "zone_connection_id": 73,
+        "from_zone": "2",
+        "to_zone": "3",
+        "distance_from_start_m": 0.5,
+        "side": "right"
+      },
+      "d": {
+        "name": "d",
+        "zone_connection_id": 74,
+        "from_zone": "3",
+        "to_zone": "4",
+        "distance_from_start_m": 1.0,
+        "side": "right"
+      },
+      "e": {
+        "name": "e",
+        "zone_connection_id": 75,
+        "from_zone": "4",
+        "to_zone": "2",
+        "distance_from_start_m": 0.5,
+        "side": "right"
+      }
+    }
+  },
+  "25": {
+    "zones": {
+      "1": {
+        "connections": [
+          {
+            "to": "2",
+            "direction": "north",
+            "distance_m": 1.0,
+            "connection_id": 77
+          }
+        ]
+      },
+      "2": {
+        "connections": [
+          {
+            "to": "3",
+            "direction": "north",
+            "distance_m": 0.8,
+            "connection_id": 78
+          }
+        ]
+      },
+      "3": {
+        "connections": [
+          {
+            "to": "5",
+            "direction": "west",
+            "distance_m": 0.95,
+            "connection_id": 79
+          }
+        ]
+      },
+      "5": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "south",
+            "distance_m": 1.8,
+            "connection_id": 80
+          }
+        ]
+      },
+      "4": {
+        "connections": [
+          {
+            "to": "1",
+            "direction": "east",
+            "distance_m": 0.95,
+            "connection_id": 81
+          }
+        ]
+      },
+      "0": {
+        "connections": [
+          {
+            "to": "5",
+            "direction": "east",
+            "distance_m": 0.5,
+            "connection_id": 82
+          }
+        ]
+      }
+    },
+    "stops": {
+      "ch": {
+        "name": "ch",
+        "zone_connection_id": 79,
+        "from_zone": "3",
+        "to_zone": "5",
+        "distance_from_start_m": 0.95,
+        "side": "right"
+      },
+      "p1": {
+        "name": "p1",
+        "zone_connection_id": 80,
+        "from_zone": "5",
+        "to_zone": "4",
+        "distance_from_start_m": 1.8,
+        "side": "right"
+      },
+      "c": {
+        "name": "c",
+        "zone_connection_id": 81,
+        "from_zone": "4",
+        "to_zone": "1",
+        "distance_from_start_m": 0.95,
+        "side": "right"
+      },
+      "d": {
+        "name": "d",
+        "zone_connection_id": 77,
+        "from_zone": "1",
+        "to_zone": "2",
+        "distance_from_start_m": 1.0,
+        "side": "right"
+      },
+      "e": {
+        "name": "e",
+        "zone_connection_id": 78,
+        "from_zone": "2",
+        "to_zone": "3",
+        "distance_from_start_m": 0.8,
+        "side": "right"
+      }
+    }
+  },
+  "26": {
+    "zones": {
+      "1": {
+        "connections": [
+          {
+            "to": "2",
+            "direction": "east",
+            "distance_m": 2.0,
+            "connection_id": 83
+          }
+        ]
+      },
+      "2": {
+        "connections": [
+          {
+            "to": "3",
+            "direction": "south",
+            "distance_m": 2.0,
+            "connection_id": 84
+          }
+        ]
+      },
+      "3": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "west",
+            "distance_m": 7.0,
+            "connection_id": 85
+          }
+        ]
+      },
+      "4": {
+        "connections": [
+          {
+            "to": "5",
+            "direction": "north",
+            "distance_m": 3.0,
+            "connection_id": 86
+          }
+        ]
+      },
+      "5": {
+        "connections": [
+          {
+            "to": "6",
+            "direction": "west",
+            "distance_m": 2.0,
+            "connection_id": 87
+          },
+          {
+            "to": "7",
+            "direction": "north",
+            "distance_m": 2.0,
+            "connection_id": 88
+          }
+        ]
+      },
+      "7": {
+        "connections": [
+          {
+            "to": "8",
+            "direction": "west",
+            "distance_m": 2.0,
+            "connection_id": 89
+          },
+          {
+            "to": "9",
+            "direction": "north",
+            "distance_m": 3.0,
+            "connection_id": 90
+          }
+        ]
+      },
+      "9": {
+        "connections": [
+          {
+            "to": "10",
+            "direction": "east",
+            "distance_m": 2.0,
+            "connection_id": 91
+          }
+        ]
+      },
+      "10": {
+        "connections": [
+          {
+            "to": "11",
+            "direction": "south",
+            "distance_m": 6.0,
+            "connection_id": 92
+          }
+        ]
+      },
+      "11": {
+        "connections": [
+          {
+            "to": "12",
+            "direction": "east",
+            "distance_m": 1.5,
+            "connection_id": 93
+          }
+        ]
+      },
+      "12": {
+        "connections": [
+          {
+            "to": "1",
+            "direction": "east",
+            "distance_m": 1.5,
+            "connection_id": 94
+          }
+        ]
+      },
+      "6": {
+        "connections": [
+          {
+            "to": "5",
+            "direction": "east",
+            "distance_m": 2.0,
+            "connection_id": 95
+          }
+        ]
+      },
+      "8": {
+        "connections": [
+          {
+            "to": "7",
+            "direction": "east",
+            "distance_m": 2.0,
+            "connection_id": 96
+          }
+        ]
+      }
+    },
+    "stops": {
+      "p1": {
+        "name": "p1",
+        "zone_connection_id": 87,
+        "from_zone": "5",
+        "to_zone": "6",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "p2": {
+        "name": "p2",
+        "zone_connection_id": 89,
+        "from_zone": "7",
+        "to_zone": "8",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "c": {
+        "name": "c",
+        "zone_connection_id": 92,
+        "from_zone": "10",
+        "to_zone": "11",
+        "distance_from_start_m": 3.0,
+        "side": "right"
+      },
+      "d": {
+        "name": "d",
+        "zone_connection_id": 92,
+        "from_zone": "10",
+        "to_zone": "11",
+        "distance_from_start_m": 6.0,
+        "side": "right"
+      },
+      "e": {
+        "name": "e",
+        "zone_connection_id": 93,
+        "from_zone": "11",
+        "to_zone": "12",
+        "distance_from_start_m": 1.5,
+        "side": "right"
+      }
+    }
+  },
+  "27": {
+    "zones": {
+      "1": {
+        "connections": [
+          {
+            "to": "2",
+            "direction": "west",
+            "distance_m": 2.0,
+            "connection_id": 97
+          }
+        ]
+      },
+      "2": {
+        "connections": [
+          {
+            "to": "3",
+            "direction": "north",
+            "distance_m": 6.0,
+            "connection_id": 98
+          }
+        ]
+      },
+      "3": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "west",
+            "distance_m": 2.0,
+            "connection_id": 99
+          }
+        ]
+      },
+      "4": {
+        "connections": [
+          {
+            "to": "5",
+            "direction": "north",
+            "distance_m": 2.0,
+            "connection_id": 100
+          },
+          {
+            "to": "6",
+            "direction": "east",
+            "distance_m": 2.0,
+            "connection_id": 102
+          }
+        ]
+      },
+      "5": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "south",
+            "distance_m": 2.0,
+            "connection_id": 101
+          }
+        ]
+      },
+      "7": {
+        "connections": [
+          {
+            "to": "6",
+            "direction": "south",
+            "distance_m": 2.0,
+            "connection_id": 104
+          }
+        ]
+      },
+      "6": {
+        "connections": [
+          {
+            "to": "8",
+            "direction": "east",
+            "distance_m": 4.0,
+            "connection_id": 105
+          },
+          {
+            "to": "7",
+            "direction": "north",
+            "distance_m": 2.0,
+            "connection_id": 112
+          }
+        ]
+      },
+      "8": {
+        "connections": [
+          {
+            "to": "9",
+            "direction": "south",
+            "distance_m": 6.0,
+            "connection_id": 106
+          }
+        ]
+      },
+      "9": {
+        "connections": [
+          {
+            "to": "10",
+            "direction": "west",
+            "distance_m": 4.0,
+            "connection_id": 107
+          }
+        ]
+      },
+      "10": {
+        "connections": [
+          {
+            "to": "11",
+            "direction": "south",
+            "distance_m": 2.0,
+            "connection_id": 108
+          }
+        ]
+      },
+      "11": {
+        "connections": [
+          {
+            "to": "12",
+            "direction": "west",
+            "distance_m": 2.0,
+            "connection_id": 109
+          }
+        ]
+      },
+      "12": {
+        "connections": [
+          {
+            "to": "13",
+            "direction": "west",
+            "distance_m": 1.0,
+            "connection_id": 110
+          },
+          {
+            "to": "1",
+            "direction": "north",
+            "distance_m": 2.0,
+            "connection_id": 113
+          }
+        ]
+      },
+      "13": {
+        "connections": [
+          {
+            "to": "14",
+            "direction": "west",
+            "distance_m": 2.0,
+            "connection_id": 111
+          }
+        ]
+      }
+    },
+    "stops": {
+      "p1": {
+        "name": "p1",
+        "zone_connection_id": 100,
+        "from_zone": "4",
+        "to_zone": "5",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "p2": {
+        "name": "p2",
+        "zone_connection_id": 112,
+        "from_zone": "6",
+        "to_zone": "7",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "c": {
+        "name": "c",
+        "zone_connection_id": 107,
+        "from_zone": "9",
+        "to_zone": "10",
+        "distance_from_start_m": 4.0,
+        "side": "right"
+      },
+      "d": {
+        "name": "d",
+        "zone_connection_id": 108,
+        "from_zone": "10",
+        "to_zone": "11",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "e": {
+        "name": "e",
+        "zone_connection_id": 109,
+        "from_zone": "11",
+        "to_zone": "12",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      }
+    }
+  },
+  "28": {
+    "zones": {
+      "1": {
+        "connections": [
+          {
+            "to": "2",
+            "direction": "west",
+            "distance_m": 2.0,
+            "connection_id": 111
+          }
+        ]
+      },
+      "2": {
+        "connections": [
+          {
+            "to": "3",
+            "direction": "north",
+            "distance_m": 6.0,
+            "connection_id": 112
+          }
+        ]
+      },
+      "3": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "east",
+            "distance_m": 2.0,
+            "connection_id": 113
+          }
+        ]
+      },
+      "4": {
+        "connections": [
+          {
+            "to": "5",
+            "direction": "north",
+            "distance_m": 2.0,
+            "connection_id": 114
+          },
+          {
+            "to": "6",
+            "direction": "east",
+            "distance_m": 2.0,
+            "connection_id": 115
+          }
+        ]
+      },
+      "6": {
+        "connections": [
+          {
+            "to": "7",
+            "direction": "north",
+            "distance_m": 2.0,
+            "connection_id": 116
+          },
+          {
+            "to": "8",
+            "direction": "east",
+            "distance_m": 4.0,
+            "connection_id": 117
+          }
+        ]
+      },
+      "8": {
+        "connections": [
+          {
+            "to": "9",
+            "direction": "south",
+            "distance_m": 6.0,
+            "connection_id": 118
+          }
+        ]
+      },
+      "9": {
+        "connections": [
+          {
+            "to": "10",
+            "direction": "west",
+            "distance_m": 4.0,
+            "connection_id": 119
+          }
+        ]
+      },
+      "10": {
+        "connections": [
+          {
+            "to": "11",
+            "direction": "south",
+            "distance_m": 2.0,
+            "connection_id": 120
+          }
+        ]
+      },
+      "11": {
+        "connections": [
+          {
+            "to": "12",
+            "direction": "west",
+            "distance_m": 2.0,
+            "connection_id": 121
+          }
+        ]
+      },
+      "12": {
+        "connections": [
+          {
+            "to": "1",
+            "direction": "north",
+            "distance_m": 2.0,
+            "connection_id": 122
+          }
+        ]
+      },
+      "5": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "south",
+            "distance_m": 2.0,
+            "connection_id": 123
+          }
+        ]
+      },
+      "7": {
+        "connections": [
+          {
+            "to": "6",
+            "direction": "south",
+            "distance_m": 2.0,
+            "connection_id": 124
+          }
+        ]
+      }
+    },
+    "stops": {
+      "p1": {
+        "name": "p1",
+        "zone_connection_id": 114,
+        "from_zone": "4",
+        "to_zone": "5",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "p2": {
+        "name": "p2",
+        "zone_connection_id": 116,
+        "from_zone": "6",
+        "to_zone": "7",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "c": {
+        "name": "c",
+        "zone_connection_id": 119,
+        "from_zone": "9",
+        "to_zone": "10",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "d": {
+        "name": "d",
+        "zone_connection_id": 120,
+        "from_zone": "10",
+        "to_zone": "11",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "e": {
+        "name": "e",
+        "zone_connection_id": 121,
+        "from_zone": "11",
+        "to_zone": "12",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      }
+    }
+  },
+  "29": {
+    "zones": {
+      "1": {
+        "connections": [
+          {
+            "to": "2",
+            "direction": "west",
+            "distance_m": 2.0,
+            "connection_id": 125
+          }
+        ]
+      },
+      "2": {
+        "connections": [
+          {
+            "to": "3",
+            "direction": "north",
+            "distance_m": 6.0,
+            "connection_id": 126
+          }
+        ]
+      },
+      "3": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "east",
+            "distance_m": 2.0,
+            "connection_id": 127
+          }
+        ]
+      },
+      "4": {
+        "connections": [
+          {
+            "to": "5",
+            "direction": "north",
+            "distance_m": 2.0,
+            "connection_id": 128
+          },
+          {
+            "to": "6",
+            "direction": "east",
+            "distance_m": 2.0,
+            "connection_id": 130
+          }
+        ]
+      },
+      "5": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "south",
+            "distance_m": 2.0,
+            "connection_id": 129
+          }
+        ]
+      },
+      "7": {
+        "connections": [
+          {
+            "to": "6",
+            "direction": "south",
+            "distance_m": 2.0,
+            "connection_id": 131
+          }
+        ]
+      },
+      "6": {
+        "connections": [
+          {
+            "to": "8",
+            "direction": "east",
+            "distance_m": 4.0,
+            "connection_id": 132
+          },
+          {
+            "to": "7",
+            "direction": "north",
+            "distance_m": 2.0,
+            "connection_id": 139
+          }
+        ]
+      },
+      "8": {
+        "connections": [
+          {
+            "to": "9",
+            "direction": "south",
+            "distance_m": 6.0,
+            "connection_id": 133
+          }
+        ]
+      },
+      "9": {
+        "connections": [
+          {
+            "to": "10",
+            "direction": "west",
+            "distance_m": 4.0,
+            "connection_id": 134
+          }
+        ]
+      },
+      "10": {
+        "connections": [
+          {
+            "to": "11",
+            "direction": "south",
+            "distance_m": 2.0,
+            "connection_id": 135
+          }
+        ]
+      },
+      "11": {
+        "connections": [
+          {
+            "to": "12",
+            "direction": "west",
+            "distance_m": 2.0,
+            "connection_id": 136
+          }
+        ]
+      },
+      "12": {
+        "connections": [
+          {
+            "to": "13",
+            "direction": "west",
+            "distance_m": 1.0,
+            "connection_id": 137
+          },
+          {
+            "to": "1",
+            "direction": "north",
+            "distance_m": 2.0,
+            "connection_id": 140
+          }
+        ]
+      },
+      "13": {
+        "connections": [
+          {
+            "to": "14",
+            "direction": "west",
+            "distance_m": 2.0,
+            "connection_id": 138
+          },
+          {
+            "to": "12",
+            "direction": "east",
+            "distance_m": 1.0,
+            "connection_id": 145
+          }
+        ]
+      },
+      "14": {
+        "connections": [
+          {
+            "to": "13",
+            "direction": "east",
+            "distance_m": 2.0,
+            "connection_id": 144
+          }
+        ]
+      }
+    },
+    "stops": {
+      "p1": {
+        "name": "p1",
+        "zone_connection_id": 130,
+        "from_zone": "4",
+        "to_zone": "6",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "p2": {
+        "name": "p2",
+        "zone_connection_id": 133,
+        "from_zone": "8",
+        "to_zone": "9",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "c": {
+        "name": "c",
+        "zone_connection_id": 137,
+        "from_zone": "12",
+        "to_zone": "13",
+        "distance_from_start_m": 4.0,
+        "side": "right"
+      },
+      "d": {
+        "name": "d",
+        "zone_connection_id": 138,
+        "from_zone": "13",
+        "to_zone": "14",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      },
+      "e": {
+        "name": "e",
+        "zone_connection_id": 139,
+        "from_zone": "6",
+        "to_zone": "7",
+        "distance_from_start_m": 2.0,
+        "side": "right"
+      }
+    }
+  },
+  "30": {
+    "zones": {
+      "1": {
+        "connections": [
+          {
+            "to": "2",
+            "direction": "east",
+            "distance_m": 1.0,
+            "connection_id": 160
+          }
+        ]
+      },
+      "2": {
+        "connections": [
+          {
+            "to": "3",
+            "direction": "east",
+            "distance_m": 1.0,
+            "connection_id": 161
+          }
+        ]
+      },
+      "3": {
+        "connections": [
+          {
+            "to": "4",
+            "direction": "south",
+            "distance_m": 3.0,
+            "connection_id": 162
+          }
+        ]
+      },
+      "4": {
+        "connections": [
+          {
+            "to": "5",
+            "direction": "east",
+            "distance_m": 1.5,
+            "connection_id": 163
+          }
+        ]
+      },
+      "5": {
+        "connections": [
+          {
+            "to": "6",
+            "direction": "north",
+            "distance_m": 1.5,
+            "connection_id": 164
+          }
+        ]
+      },
+      "6": {
+        "connections": [
+          {
+            "to": "7",
+            "direction": "east",
+            "distance_m": 1.5,
+            "connection_id": 165
+          },
+          {
+            "to": "8",
+            "direction": "north",
+            "distance_m": 1.5,
+            "connection_id": 167
+          }
+        ]
+      },
+      "7": {
+        "connections": [
+          {
+            "to": "6",
+            "direction": "west",
+            "distance_m": 1.5,
+            "connection_id": 166
+          }
+        ]
+      },
+      "8": {
+        "connections": [
+          {
+            "to": "9",
+            "direction": "east",
+            "distance_m": 1.5,
+            "connection_id": 168
+          },
+          {
+            "to": "10",
+            "direction": "north",
+            "distance_m": 1.5,
+            "connection_id": 170
+          }
+        ]
+      },
+      "9": {
+        "connections": [
+          {
+            "to": "8",
+            "direction": "west",
+            "distance_m": 1.5,
+            "connection_id": 169
+          }
+        ]
+      },
+      "10": {
+        "connections": [
+          {
+            "to": "11",
+            "direction": "east",
+            "distance_m": 1.0,
+            "connection_id": 171
+          }
+        ]
+      },
+      "11": {
+        "connections": [
+          {
+            "to": "12",
+            "direction": "north",
+            "distance_m": 1.0,
+            "connection_id": 172
+          }
+        ]
+      },
+      "12": {
+        "connections": [
+          {
+            "to": "13",
+            "direction": "west",
+            "distance_m": 2.5,
+            "connection_id": 173
+          }
+        ]
+      },
+      "13": {
+        "connections": [
+          {
+            "to": "14",
+            "direction": "south",
+            "distance_m": 1.5,
+            "connection_id": 174
+          }
+        ]
+      },
+      "14": {
+        "connections": [
+          {
+            "to": "15",
+            "direction": "west",
+            "distance_m": 1.0,
+            "connection_id": 175
+          },
+          {
+            "to": "3",
+            "direction": "south",
+            "distance_m": 1.0,
+            "connection_id": 179
+          }
+        ]
+      },
+      "15": {
+        "connections": [
+          {
+            "to": "16",
+            "direction": "west",
+            "distance_m": 1.0,
+            "connection_id": 176
+          },
+          {
+            "to": "2",
+            "direction": "south",
+            "distance_m": 1.0,
+            "connection_id": 178
+          }
+        ]
+      },
+      "16": {
+        "connections": [
+          {
+            "to": "1",
+            "direction": "south",
+            "distance_m": 1.0,
+            "connection_id": 177
+          }
+        ]
+      }
+    },
+    "stops": {
+      "C": {
+        "name": "Charging",
+        "zone_connection_id": 177,
+        "from_zone": "16",
+        "to_zone": "1",
+        "distance_from_start_m": 1.0,
+        "side": "right"
+      },
+      "C1": {
+        "name": "Charging",
+        "zone_connection_id": 178,
+        "from_zone": "15",
+        "to_zone": "2",
+        "distance_from_start_m": 1.0,
+        "side": "right"
+      },
+      "D1": {
+        "name": "Dispatching",
+        "zone_connection_id": 165,
+        "from_zone": "6",
+        "to_zone": "7",
+        "distance_from_start_m": 1.0,
+        "side": "right"
+      },
+      "D2": {
+        "name": "Dispatching",
+        "zone_connection_id": 168,
+        "from_zone": "8",
+        "to_zone": "9",
+        "distance_from_start_m": 1.0,
+        "side": "right"
+      },
+      "P": {
+        "name": "Painting",
+        "zone_connection_id": 172,
+        "from_zone": "11",
+        "to_zone": "12",
+        "distance_from_start_m": 1.0,
+        "side": "right"
+      }
+    }
+  },
+  "31": {
+    "zones": {},
+    "stops": {}
+  },
+  "32": {
+    "zones": {},
+    "stops": {}
+  },
+  "33": {
+    "zones": {},
+    "stops": {}
+  },
+  "34": {
+    "zones": {},
+    "stops": {}
+  }
+}

@@ -1,0 +1,27 @@
+section,key,value,description
+server,port,65430,TCP port the Fleet Manager listens on
+server,map_id,26,Global map ID used when creating pickup tasks
+
+ip_mapping,192.168.1.11,disp1,IP address of Dispatcher 1
+ip_mapping,192.168.1.16,disp2,IP address of Dispatcher 2
+ip_mapping,192.168.1.19,disp3,IP address of Dispatcher 3
+ip_mapping,192.168.1.23,print1,IP address of Dispatcher 3
+ip_mapping,192.168.1.7,print2,IP address of Printing unit
+
+dispatcher_config,disp1_pickup,p1,Pickup stop ID for Dispatcher 1
+dispatcher_config,disp1_check,c,Check stop ID for Dispatcher 1
+dispatcher_config,disp1_drop,d,Drop stop ID for Dispatcher 1
+dispatcher_config,disp1_end_stop,e,End stop ID for Dispatcher 1
+dispatcher_config,disp1_end_zone,12,End zone for Dispatcher 1
+
+dispatcher_config,disp2_pickup,p2,Pickup stop ID for Dispatcher 2
+dispatcher_config,disp2_check,c,Check stop ID for Dispatcher 2
+dispatcher_config,disp2_drop,d,Drop stop ID for Dispatcher 2
+dispatcher_config,disp2_end_stop,e,End stop ID for Dispatcher 2
+dispatcher_config,disp2_end_zone,12,End zone for Dispatcher 2
+
+dispatcher_config,disp3_pickup,p3,Pickup stop ID for Dispatcher 3
+dispatcher_config,disp3_check,c,Check stop ID for Dispatcher 3
+dispatcher_config,disp3_drop,d,Drop stop ID for Dispatcher 3
+dispatcher_config,disp3_end_stop,e,End stop ID for Dispatcher 3
+dispatcher_config,disp3_end_zone,12,End zone for Dispatcher 3

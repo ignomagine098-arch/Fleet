@@ -1,0 +1,39 @@
+section,key,value,description
+server,port,65430,TCP port the Fleet Manager listens on
+server,map_id,30,Global map ID used when creating pickup tasks
+
+ip_mapping,192.168.1.1,disp1,
+ip_mapping,192.168.29.168,disp1,IP address of Dispatcher 1
+ip_mapping,192.168.1.9,disp2,IP address of Dispatcher 2
+ip_mapping,192.168.1.19,disp3,IP address of Dispatcher 3
+ip_mapping,192.168.1.24,print1,IP address of Printing unit
+
+dispatcher_config,disp1_pickup,p1,Pickup stop ID for Dispatcher 1
+dispatcher_config,disp1_check,c,Check stop ID for Dispatcher 1
+dispatcher_config,disp1_drop,d,Drop stop ID for Dispatcher 1
+dispatcher_config,disp1_end_stop,e,End stop ID for Dispatcher 1
+dispatcher_config,disp1_end_zone,12,End zone for Dispatcher 1
+
+dispatcher_config,disp2_pickup,p2,Pickup stop ID for Dispatcher 2
+dispatcher_config,disp2_check,c,Check stop ID for Dispatcher 2
+dispatcher_config,disp2_drop,d,Drop stop ID for Dispatcher 2
+dispatcher_config,disp2_end_stop,e,End stop ID for Dispatcher 2
+dispatcher_config,disp2_end_zone,12,End zone for Dispatcher 2
+
+dispatcher_config,disp3_pickup,p3,Pickup stop ID for Dispatcher 3
+dispatcher_config,disp3_check,c,Check stop ID for Dispatcher 3
+dispatcher_config,disp3_drop,d,Drop stop ID for Dispatcher 3
+dispatcher_config,disp3_end_stop,e,End stop ID for Dispatcher 3
+dispatcher_config,disp3_end_zone,12,End zone for Dispatcher 3
+
+external_messages,from_unit_tyre_ready,TYRE_READY,What dispatcher sends when tyre is ready (can be TYRE_MANUFACTURED etc.)
+external_messages,from_unit_tyre_ready_alt,TYRE READY,Alternative format from dispatcher
+external_messages,from_unit_tyre_release_ok,TYRE_RELEASE_OK,What dispatcher sends to confirm release (can be TYRE_RELEASED etc.)
+external_messages,from_unit_tyre_release_ok_alt,RELEASE_TYRE_OK,Alternative confirmation from dispatcher
+external_messages,from_unit_pick_tyre_ok,PICK_TYRE_OK,What painting station sends to confirm pickup (can be TYRE_PICKED etc.)
+external_messages,from_unit_pick_tyre_ok_alt,TYRE_PICKUP_OK,Alternative confirmation from painting station
+external_messages,from_unit_painting_idle,PAINTING_IDLE,What painting station sends when idle (customizable)
+external_messages,from_unit_painting_busy,PAINTING_BUSY,What painting station sends when busy (customizable)
+external_messages,to_unit_tyre_release,TYRE_RELEASE,What fleet sends to dispatcher when robot says AT_DISPATCHER (customizable)
+external_messages,to_unit_location_status,LOCATION_STATUS,What fleet sends to painting station when robot says CHECK_PAINTING (customizable)
+external_messages,to_unit_pick_tyre,PICK_TYRE,What fleet sends to painting station when robot says AT_PAINTING (customizable)

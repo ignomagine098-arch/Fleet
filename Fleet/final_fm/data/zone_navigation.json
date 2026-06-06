@@ -1,0 +1,171 @@
+{
+  "zone_connections": {
+    "1": [
+      {
+        "from_zone": "1",
+        "to_zone": "2",
+        "direction": "west",
+        "connection_id": "247",
+        "is_active": true
+      },
+      {
+        "from_zone": "1",
+        "to_zone": "3",
+        "direction": "west",
+        "connection_id": "262",
+        "is_active": true
+      }
+    ],
+    "2": [
+      {
+        "from_zone": "2",
+        "to_zone": "3",
+        "direction": "west",
+        "connection_id": "248",
+        "is_active": true
+      }
+    ],
+    "3": [
+      {
+        "from_zone": "3",
+        "to_zone": "16",
+        "direction": "south",
+        "connection_id": "249",
+        "is_active": true
+      }
+    ],
+    "16": [
+      {
+        "from_zone": "16",
+        "to_zone": "4",
+        "direction": "south",
+        "connection_id": "250",
+        "is_active": true
+      }
+    ],
+    "4": [
+      {
+        "from_zone": "4",
+        "to_zone": "5",
+        "direction": "south",
+        "connection_id": "251",
+        "is_active": true
+      }
+    ],
+    "5": [
+      {
+        "from_zone": "5",
+        "to_zone": "6",
+        "direction": "west",
+        "connection_id": "252",
+        "is_active": true
+      }
+    ],
+    "6": [
+      {
+        "from_zone": "6",
+        "to_zone": "18",
+        "direction": "north",
+        "connection_id": "253",
+        "is_active": true
+      }
+    ],
+    "18": [
+      {
+        "from_zone": "18",
+        "to_zone": "9",
+        "direction": "north",
+        "connection_id": "254",
+        "is_active": true
+      }
+    ],
+    "9": [
+      {
+        "from_zone": "9",
+        "to_zone": "8",
+        "direction": "east",
+        "connection_id": "255",
+        "is_active": true
+      }
+    ],
+    "8": [
+      {
+        "from_zone": "8",
+        "to_zone": "7",
+        "direction": "north",
+        "connection_id": "256",
+        "is_active": true
+      }
+    ],
+    "7": [
+      {
+        "from_zone": "7",
+        "to_zone": "10",
+        "direction": "east",
+        "connection_id": "257",
+        "is_active": true
+      }
+    ],
+    "10": [
+      {
+        "from_zone": "10",
+        "to_zone": "11",
+        "direction": "north",
+        "connection_id": "258",
+        "is_active": true
+      }
+    ],
+    "11": [
+      {
+        "from_zone": "11",
+        "to_zone": "12",
+        "direction": "south",
+        "connection_id": "259",
+        "is_active": true
+      }
+    ],
+    "12": [
+      {
+        "from_zone": "12",
+        "to_zone": "1",
+        "direction": "west",
+        "connection_id": "260",
+        "is_active": true
+      },
+      {
+        "from_zone": "12",
+        "to_zone": "3",
+        "direction": "west",
+        "connection_id": "261",
+        "is_active": true
+      }
+    ]
+  },
+  "device_states": {
+    "rob2": {
+      "current_zone": "4",
+      "locked_direction": "north",
+      "target_zone": "1",
+      "lock_timestamp": 1775470970.723993,
+      "turn_type": null,
+      "device_id": "rob2",
+      "is_transitioning": false,
+      "last_turn_signature": null,
+      "last_turn_timestamp": null,
+      "last_turn_zone": null
+    },
+    "rob1": {
+      "current_zone": "1",
+      "locked_direction": "north",
+      "target_zone": "3",
+      "lock_timestamp": 1780724950.3234172,
+      "turn_type": null,
+      "device_id": "rob1",
+      "is_transitioning": false,
+      "last_turn_signature": null,
+      "last_turn_timestamp": null,
+      "last_turn_zone": null
+    }
+  },
+  "last_saved": 1780724950.3234172
+}

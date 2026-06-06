@@ -1,0 +1,137 @@
+2026-03-02 17:53:14,073 - warehouse_app - INFO - main.py:58 - Starting Warehouse Management System v1.0.0
+2026-03-02 17:53:14,075 - csv_handler - INFO - csv_handler.py:112 - Created CSV file with headers: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\devices.csv
+2026-03-02 17:53:14,075 - csv_handler - INFO - csv_handler.py:28 - Created CSV file: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\devices.csv
+2026-03-02 17:53:14,076 - csv_handler - INFO - csv_handler.py:112 - Created CSV file with headers: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\tasks.csv
+2026-03-02 17:53:14,077 - csv_handler - INFO - csv_handler.py:28 - Created CSV file: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\tasks.csv
+2026-03-02 17:53:14,079 - csv_handler - INFO - csv_handler.py:112 - Created CSV file with headers: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\users.csv
+2026-03-02 17:53:14,080 - csv_handler - INFO - csv_handler.py:28 - Created CSV file: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\users.csv
+2026-03-02 17:53:14,082 - csv_handler - INFO - csv_handler.py:112 - Created CSV file with headers: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\maps.csv
+2026-03-02 17:53:14,083 - csv_handler - INFO - csv_handler.py:28 - Created CSV file: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\maps.csv
+2026-03-02 17:53:14,084 - csv_handler - INFO - csv_handler.py:112 - Created CSV file with headers: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\zones.csv
+2026-03-02 17:53:14,084 - csv_handler - INFO - csv_handler.py:28 - Created CSV file: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\zones.csv
+2026-03-02 17:53:14,086 - csv_handler - INFO - csv_handler.py:112 - Created CSV file with headers: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\stops.csv
+2026-03-02 17:53:14,086 - csv_handler - INFO - csv_handler.py:28 - Created CSV file: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\stops.csv
+2026-03-02 17:53:14,088 - csv_handler - INFO - csv_handler.py:112 - Created CSV file with headers: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\stop_groups.csv
+2026-03-02 17:53:14,089 - csv_handler - INFO - csv_handler.py:28 - Created CSV file: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\stop_groups.csv
+2026-03-02 17:53:14,090 - csv_handler - INFO - csv_handler.py:112 - Created CSV file with headers: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\racks.csv
+2026-03-02 17:53:14,091 - csv_handler - INFO - csv_handler.py:28 - Created CSV file: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\racks.csv
+2026-03-02 17:53:14,092 - csv_handler - INFO - csv_handler.py:112 - Created CSV file with headers: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\zone_alignment.csv
+2026-03-02 17:53:14,094 - csv_handler - INFO - csv_handler.py:28 - Created CSV file: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\zone_alignment.csv
+2026-03-02 17:53:14,095 - csv_handler - INFO - csv_handler.py:112 - Created CSV file with headers: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\products.csv
+2026-03-02 17:53:14,100 - csv_handler - INFO - csv_handler.py:28 - Created CSV file: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\products.csv
+2026-03-02 17:53:14,102 - csv_handler - INFO - csv_handler.py:112 - Created CSV file with headers: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\charging_zones.csv
+2026-03-02 17:53:14,103 - csv_handler - INFO - csv_handler.py:28 - Created CSV file: C:\Users\nagra\Desktop\Fleet\final_fm\dist\data\charging_zones.csv
+2026-03-02 17:54:55,636 - warehouse_app - INFO - main.py:58 - Starting Warehouse Management System v1.0.0
+2026-03-02 17:58:02,891 - warehouse_app - INFO - main.py:58 - Starting Warehouse Management System v1.0.0
+2026-03-02 18:06:14,316 - warehouse_app - INFO - main.py:58 - Starting Warehouse Management System v1.0.0
+2026-03-02 18:11:12,617 - warehouse_app - INFO - main.py:58 - Starting Warehouse Management System v1.0.0
+2026-03-02 18:24:25,669 - warehouse_app - INFO - main.py:58 - Starting Warehouse Management System v1.0.0
+2026-03-02 18:24:40,636 - warehouse_app - INFO - main.py:125 - User 'admin' logged in with role='admin'.
+2026-03-02 18:24:40,668 - devices_api - INFO - devices.py:27 - Device location syncer initialized
+2026-03-02 18:24:40,671 - notification_monitor - INFO - notification_monitor.py:37 - NotificationMonitor initialized
+2026-03-02 18:24:40,789 - main_window - INFO - main_window.py:142 - Dashboard widget loaded successfully
+2026-03-02 18:24:40,806 - devices_api - INFO - devices.py:27 - Device location syncer initialized
+2026-03-02 18:24:40,891 - device_list - INFO - device_list.py:313 - Refreshing device data...
+2026-03-02 18:24:40,897 - device_list - INFO - device_list.py:333 - Loaded 0 devices from CSV
+2026-03-02 18:24:40,909 - main_window - INFO - main_window.py:153 - Device Management widget loaded successfully
+2026-03-02 18:24:40,926 - main_window - INFO - main_window.py:164 - Rack Management widget loaded successfully
+2026-03-02 18:24:40,961 - product_management - INFO - product_management.py:144 - Loaded 0 products from CSV
+2026-03-02 18:24:40,969 - main_window - INFO - main_window.py:175 - Product Management widget loaded successfully
+2026-03-02 18:24:41,158 - main_window - INFO - main_window.py:186 - Task Creation widget loaded successfully
+2026-03-02 18:24:41,164 - devices_api - INFO - devices.py:27 - Device location syncer initialized
+2026-03-02 18:24:41,203 - main_window - INFO - main_window.py:197 - Task Monitor widget loaded successfully
+2026-03-02 18:24:41,256 - user_management - INFO - user_management.py:586 - Refreshing user data...
+2026-03-02 18:24:41,258 - user_management - INFO - user_management.py:608 - Loaded 0 users from CSV
+2026-03-02 18:24:41,271 - main_window - INFO - main_window.py:208 - User Management widget loaded successfully
+2026-03-02 18:24:41,667 - map_management - INFO - map_management.py:66 - Map Management widget initialized
+2026-03-02 18:24:41,714 - main_window - INFO - main_window.py:219 - Map Management widget loaded successfully
+2026-03-02 18:24:41,719 - devices_api - INFO - devices.py:27 - Device location syncer initialized
+2026-03-02 18:24:41,859 - main_window - INFO - main_window.py:230 - Device Tracking widget loaded successfully
+2026-03-02 18:24:41,972 - main_window - INFO - main_window.py:241 - Robot Control widget loaded successfully
+2026-03-02 18:24:42,004 - warehouse_app - INFO - main.py:129 - Main window created successfully
+2026-03-02 18:24:42,059 - warehouse_app - INFO - main.py:142 - Application started successfully after login
+2026-03-02 18:24:45,482 - device_list - INFO - device_list.py:313 - Refreshing device data...
+2026-03-02 18:24:45,489 - device_list - INFO - device_list.py:333 - Loaded 0 devices from CSV
+2026-03-02 18:24:45,489 - main_window - INFO - main_window.py:367 - Refreshed data for Device Management
+2026-03-02 18:24:46,202 - user_management - INFO - user_management.py:586 - Refreshing user data...
+2026-03-02 18:24:46,204 - user_management - INFO - user_management.py:608 - Loaded 0 users from CSV
+2026-03-02 18:24:46,205 - main_window - INFO - main_window.py:367 - Refreshed data for User Management
+2026-03-02 18:24:46,747 - main_window - INFO - main_window.py:367 - Refreshed data for Map Management
+2026-03-02 18:24:47,375 - product_management - INFO - product_management.py:144 - Loaded 0 products from CSV
+2026-03-02 18:24:47,376 - main_window - INFO - main_window.py:367 - Refreshed data for Product Management
+2026-03-02 18:24:48,050 - main_window - INFO - main_window.py:367 - Refreshed data for Task Monitor
+2026-03-02 18:24:49,445 - main_window - INFO - main_window.py:367 - Refreshed data for Robot Control
+2026-03-02 18:24:51,117 - main_window - INFO - main_window.py:454 - Application closing
+2026-03-02 18:30:02,528 - warehouse_app - INFO - main.py:58 - Starting Warehouse Management System v1.0.0
+2026-03-02 18:30:18,812 - warehouse_app - INFO - main.py:125 - User 'admin' logged in with role='admin'.
+2026-03-02 18:30:18,843 - devices_api - INFO - devices.py:27 - Device location syncer initialized
+2026-03-02 18:30:18,846 - notification_monitor - INFO - notification_monitor.py:37 - NotificationMonitor initialized
+2026-03-02 18:30:18,942 - main_window - INFO - main_window.py:142 - Dashboard widget loaded successfully
+2026-03-02 18:30:18,951 - devices_api - INFO - devices.py:27 - Device location syncer initialized
+2026-03-02 18:30:19,030 - device_list - INFO - device_list.py:313 - Refreshing device data...
+2026-03-02 18:30:19,037 - device_list - INFO - device_list.py:333 - Loaded 0 devices from CSV
+2026-03-02 18:30:19,048 - main_window - INFO - main_window.py:153 - Device Management widget loaded successfully
+2026-03-02 18:30:19,065 - main_window - INFO - main_window.py:164 - Rack Management widget loaded successfully
+2026-03-02 18:30:19,100 - product_management - INFO - product_management.py:144 - Loaded 0 products from CSV
+2026-03-02 18:30:19,107 - main_window - INFO - main_window.py:175 - Product Management widget loaded successfully
+2026-03-02 18:30:19,376 - main_window - INFO - main_window.py:186 - Task Creation widget loaded successfully
+2026-03-02 18:30:19,391 - devices_api - INFO - devices.py:27 - Device location syncer initialized
+2026-03-02 18:30:19,450 - main_window - INFO - main_window.py:197 - Task Monitor widget loaded successfully
+2026-03-02 18:30:19,516 - user_management - INFO - user_management.py:586 - Refreshing user data...
+2026-03-02 18:30:19,519 - user_management - INFO - user_management.py:608 - Loaded 0 users from CSV
+2026-03-02 18:30:19,528 - main_window - INFO - main_window.py:208 - User Management widget loaded successfully
+2026-03-02 18:30:19,905 - map_management - INFO - map_management.py:66 - Map Management widget initialized
+2026-03-02 18:30:19,973 - main_window - INFO - main_window.py:219 - Map Management widget loaded successfully
+2026-03-02 18:30:19,979 - devices_api - INFO - devices.py:27 - Device location syncer initialized
+2026-03-02 18:30:20,123 - main_window - INFO - main_window.py:230 - Device Tracking widget loaded successfully
+2026-03-02 18:30:20,222 - main_window - INFO - main_window.py:241 - Robot Control widget loaded successfully
+2026-03-02 18:30:20,232 - warehouse_app - INFO - main.py:129 - Main window created successfully
+2026-03-02 18:30:20,278 - warehouse_app - INFO - main.py:142 - Application started successfully after login
+2026-03-02 18:30:23,136 - main_window - INFO - main_window.py:367 - Refreshed data for Map Management
+2026-03-02 18:30:25,128 - product_management - INFO - product_management.py:144 - Loaded 0 products from CSV
+2026-03-02 18:30:25,128 - main_window - INFO - main_window.py:367 - Refreshed data for Product Management
+2026-03-02 18:30:26,030 - main_window - INFO - main_window.py:367 - Refreshed data for Create Task
+2026-03-02 18:30:27,627 - main_window - INFO - main_window.py:367 - Refreshed data for Task Monitor
+2026-03-02 18:30:28,337 - main_window - INFO - main_window.py:367 - Refreshed data for Robot Control
+2026-03-02 18:30:49,048 - device_list - INFO - device_list.py:313 - Refreshing device data...
+2026-03-02 18:30:49,067 - device_list - INFO - device_list.py:333 - Loaded 0 devices from CSV
+2026-03-02 18:30:54,169 - main_window - INFO - main_window.py:454 - Application closing
+2026-03-02 18:37:08,107 - warehouse_app - INFO - main.py:58 - Starting Warehouse Management System v1.0.0
+2026-03-02 18:37:23,174 - warehouse_app - INFO - main.py:125 - User 'admin' logged in with role='admin'.
+2026-03-02 18:37:23,195 - devices_api - INFO - devices.py:27 - Device location syncer initialized
+2026-03-02 18:37:23,197 - notification_monitor - INFO - notification_monitor.py:37 - NotificationMonitor initialized
+2026-03-02 18:37:23,311 - main_window - INFO - main_window.py:142 - Dashboard widget loaded successfully
+2026-03-02 18:37:23,326 - devices_api - INFO - devices.py:27 - Device location syncer initialized
+2026-03-02 18:37:23,398 - device_list - INFO - device_list.py:313 - Refreshing device data...
+2026-03-02 18:37:23,406 - device_list - INFO - device_list.py:333 - Loaded 0 devices from CSV
+2026-03-02 18:37:23,416 - main_window - INFO - main_window.py:153 - Device Management widget loaded successfully
+2026-03-02 18:37:23,440 - main_window - INFO - main_window.py:164 - Rack Management widget loaded successfully
+2026-03-02 18:37:23,479 - product_management - INFO - product_management.py:144 - Loaded 0 products from CSV
+2026-03-02 18:37:23,492 - main_window - INFO - main_window.py:175 - Product Management widget loaded successfully
+2026-03-02 18:37:23,680 - main_window - INFO - main_window.py:186 - Task Creation widget loaded successfully
+2026-03-02 18:37:23,690 - devices_api - INFO - devices.py:27 - Device location syncer initialized
+2026-03-02 18:37:23,732 - main_window - INFO - main_window.py:197 - Task Monitor widget loaded successfully
+2026-03-02 18:37:23,771 - user_management - INFO - user_management.py:586 - Refreshing user data...
+2026-03-02 18:37:23,773 - user_management - INFO - user_management.py:608 - Loaded 0 users from CSV
+2026-03-02 18:37:23,779 - main_window - INFO - main_window.py:208 - User Management widget loaded successfully
+2026-03-02 18:37:24,132 - map_management - INFO - map_management.py:66 - Map Management widget initialized
+2026-03-02 18:37:24,167 - main_window - INFO - main_window.py:219 - Map Management widget loaded successfully
+2026-03-02 18:37:24,171 - devices_api - INFO - devices.py:27 - Device location syncer initialized
+2026-03-02 18:37:24,329 - main_window - INFO - main_window.py:230 - Device Tracking widget loaded successfully
+2026-03-02 18:37:24,430 - main_window - INFO - main_window.py:241 - Robot Control widget loaded successfully
+2026-03-02 18:37:24,458 - warehouse_app - INFO - main.py:129 - Main window created successfully
+2026-03-02 18:37:24,499 - warehouse_app - INFO - main.py:142 - Application started successfully after login
+2026-03-02 18:37:27,639 - user_management - INFO - user_management.py:586 - Refreshing user data...
+2026-03-02 18:37:27,642 - user_management - INFO - user_management.py:608 - Loaded 0 users from CSV
+2026-03-02 18:37:27,643 - main_window - INFO - main_window.py:367 - Refreshed data for User Management
+2026-03-02 18:37:28,311 - main_window - INFO - main_window.py:367 - Refreshed data for Map Management
+2026-03-02 18:37:28,915 - main_window - INFO - main_window.py:367 - Refreshed data for Create Task
+2026-03-02 18:37:29,964 - main_window - INFO - main_window.py:367 - Refreshed data for Robot Control
+2026-03-02 18:37:30,432 - main_window - INFO - main_window.py:367 - Refreshed data for Create Task
+2026-03-02 18:37:30,825 - main_window - INFO - main_window.py:367 - Refreshed data for Rack Management
+2026-03-02 18:37:31,187 - user_management - INFO - user_management.py:586 - Refreshing user data...
+2026-03-02 18:37:31,189 - user_management - INFO - user_management.py:608 - Loaded 0 users from CSV
+2026-03-02 18:37:31,190 - main_window - INFO - main_window.py:367 - Refreshed data for User Management
+2026-03-02 18:37:32,968 - main_window - INFO - main_window.py:367 - Refreshed data for Create Task
+2026-03-02 18:37:53,390 - device_list - INFO - device_list.py:313 - Refreshing device data...
+2026-03-02 18:37:53,400 - device_list - INFO - device_list.py:333 - Loaded 0 devices from CSV

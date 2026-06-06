@@ -1,0 +1,4 @@
+id,device_id,device_name,device_model,forward_speed,turning_speed,vertical_speed,horizontal_speed,status,battery_level,current_map,current_location,wheel_diameter,distance_between_wheels,length,width,height,lifting_height,distance,created_at,updated_at
+1,rob1,rob1,V1,100,100,0,0,working,86,25,5,0.00,0.00,0.00,0.00,0.00,0.00,0.00,2026-01-27T14:27:18.707427,2026-02-23T18:02:07.495382
+2,rob2,rob2,V1,100,100,0,0,working,100,22,6,0.00,0.00,0.00,0.00,0.00,0.00,0.00,2026-01-27T14:27:44.041233,2026-02-23T18:02:07.501689
+3,rob3,rob3,V1,100,100,0,0,working,19,20,2,0.00,0.00,0.00,0.00,0.00,0.00,0.00,2026-01-27T14:27:44.041233,2026-02-23T12:06:23.659994

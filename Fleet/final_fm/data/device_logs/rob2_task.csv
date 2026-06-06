@@ -1,0 +1,11 @@
+task_id,task_status
+TASK0001,pending_task
+TASK0001,run_task
+TASK0001,run_task
+TASK0001,task_cancelled
+TASK0002,pending_task
+TASK0002,run_task
+TASK0002,task_cancelled
+TASK0003,pending_task
+TASK0003,run_task
+TASK0003,task_cancelled

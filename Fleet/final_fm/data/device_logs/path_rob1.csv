@@ -1,0 +1,9 @@
+command,value,unit
+HOMING,ALL
+ALIGN,1,0,0
+
+LABEL,PICKUP
+RETURN
+
+LABEL,DROP
+RETURN

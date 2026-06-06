@@ -1,0 +1,5 @@
+rack_id,map_name,zone_name,stop_id,rack_distance_mm
+s1,klkl,1 -> 2,STOP_01_CENTER,200
+123,klkl,1 -> 2,STOP_01_CENTER,150
+rack_1,45,1 -> 3,1,100
+rack_2,45,1 -> 3,1,150
